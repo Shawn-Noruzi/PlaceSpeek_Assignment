@@ -1,24 +1,17 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./styles/App.css";
+import ListRender from "./components/listRender.js";
 
 function App() {
+  const Users = [
+    { ID: 3, name: "A", date_joined: "01-02-2019" },
+    { ID: 5, name: "B", date_joined: "01-02-2019" },
+    { ID: 15, name: "C", date_joined: "01-02-2019" }
+  ];
+let FooSize, FooBarSize, BarSize;
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ListRender props={Users} FooSize={FooSize} FooBarSize={FooBarSize} BarSize={BarSize}  />
     </div>
   );
 }
