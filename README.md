@@ -6,8 +6,12 @@ Libraries used:
 * Bootstrap for simple CSS + Layout styling.
 
 
-npm install
+Quickstart: 
 
-npm start 
+1. Clone repo.
+
+2. npm install
+
+3. npm start 
 
 opens: http://localhost:3000/
