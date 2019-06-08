@@ -11,7 +11,6 @@ const ListRender = ({
 }) => {
   const [isHovered, setHovered] = useState(false);
 
-
   return (
     <div>
       {checkIdValue === 3
@@ -20,17 +19,35 @@ const ListRender = ({
             .filter(list => list.ID % 3 === 0 && list.ID % 5 !== 0)
             .map(list => {
               FooSize++;
-              
+              console.log("updating FooSize: ", FooSize);
+
               return (
-                <div key={list.ID} onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}>
-                  <p>Name: ${list.name}</p>
-                  <p>
-                    Join Date:{" "}
-                    {moment(list.date_joined, "MM-DD-YYYY").format(
-                      "MMM Do, YY"
-                    )}
-                  </p>
-                  {isHovered ? <button onClick={() => removeFromList(list.ID, 'food')}>Remove</button>:null }
+                <div
+                  class="accordion"
+                  key={list.ID}
+                  onMouseEnter={() => setHovered(true)}
+                  onMouseLeave={() => setHovered(false)}
+                >
+                  <section class="accordion-item">
+                    <p>Name: {list.name}</p>
+                    <p>
+                      Join Date:{" "}
+                      {moment(list.date_joined, "MM-DD-YYYY").format(
+                        "MMM Do, YY"
+                      )}
+                    </p>
+
+                    <div class="accordion-item-content">
+                      {isHovered ? (
+                        <button
+                          class="accordion button"
+                          onClick={() => removeFromList(list.ID, "foo")}
+                        >
+                          Foo
+                        </button>
+                      ) : null}
+                    </div>
+                  </section>
                 </div>
               );
             })
@@ -39,18 +56,34 @@ const ListRender = ({
             .filter(list => list.ID % 3 !== 0 && list.ID % 5 === 0)
             .map(list => {
               BarSize++;
-              console.log('Adding to Bar!', BarSize)
 
               return (
-                <div key={list.ID} onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}>
-                  <p>Name: ${list.name}</p>
-                  <p>
-                    Join Date:{" "}
-                    {moment(list.date_joined, "MM-DD-YYYY").format(
-                      "MMM Do, YY"
-                    )}
-                  </p>
-                  {isHovered ? <button onClick={() => removeFromList(list.ID, 'bar')}>Remove</button>:null }
+                <div
+                  class="accordion"
+                  key={list.ID}
+                  onMouseEnter={() => setHovered(true)}
+                  onMouseLeave={() => setHovered(false)}
+                >
+                  <section class="accordion-item">
+                    <p>Name: {list.name}</p>
+                    <p>
+                      Join Date:{" "}
+                      {moment(list.date_joined, "MM-DD-YYYY").format(
+                        "MMM Do, YY"
+                      )}
+                    </p>
+
+                    <div class="accordion-item-content">
+                      {isHovered ? (
+                        <button
+                          class="accordion button"
+                          onClick={() => removeFromList(list.ID, "bar")}
+                        >
+                          Bar
+                        </button>
+                      ) : null}
+                    </div>
+                  </section>
                 </div>
               );
             })
@@ -59,16 +92,34 @@ const ListRender = ({
             .filter(list => list.ID % 3 === 0 && list.ID % 5 === 0)
             .map(list => {
               FooBarSize++;
+
               return (
-                <div key={list.ID} onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}>
-                  <p>Name: ${list.name}</p>
-                  <p>
-                    Join Date:{" "}
-                    {moment(list.date_joined, "MM-DD-YYYY").format(
-                      "MMM Do, YY"
-                    )}
-                  </p>
-                  {isHovered ? <button onClick={() => removeFromList(list.ID, 'foobar')}>Remove</button>:null }
+                <div
+                  class="accordion"
+                  key={list.ID}
+                  onMouseEnter={() => setHovered(true)}
+                  onMouseLeave={() => setHovered(false)}
+                >
+                  <section class="accordion-item">
+                    <p>Name: {list.name}</p>
+                    <p>
+                      Join Date:{" "}
+                      {moment(list.date_joined, "MM-DD-YYYY").format(
+                        "MMM Do, YY"
+                      )}
+                    </p>
+
+                    <div class="accordion-item-content">
+                      {isHovered ? (
+                        <button
+                          class="accordion button"
+                          onClick={() => removeFromList(list.ID, "foobar")}
+                        >
+                          FooBar
+                        </button>
+                      ) : null}
+                    </div>
+                  </section>
                 </div>
               );
             })

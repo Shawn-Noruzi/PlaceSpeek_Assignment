@@ -1,0 +1,26 @@
+.button {
+   margin-left: 3rem;
+}
+
+.Container { 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.Col {
+    padding: 2rem!important;
+    margin: 2rem!important;
+}
+
+.accordion:hover .accordion-item:hover .accordion-item-content,
+.accordion .accordion-item--default .accordion-item-content {
+    height: 6em;
+}
+
+.accordion-item-content,
+.accordion:hover .accordion-item-content {
+    height: 0;
+    overflow: hidden;
+    transition: height .25s;
+}
