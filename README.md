@@ -7,6 +7,7 @@ Libraries used:
 
 
 npm install
+
 npm start 
 
 opens: http://localhost:3000/
