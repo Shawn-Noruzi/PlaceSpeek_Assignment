@@ -1,17 +1,18 @@
+/*General layout + styling*/
 .button {
    margin-left: 3rem;
 }
 
 .Container { 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+   margin-top: 4rem;
 }
 
 .Col {
     padding: 2rem!important;
     margin: 2rem!important;
 }
+
+/*Accordion on hover*/
 
 .accordion:hover .accordion-item:hover .accordion-item-content,
 .accordion .accordion-item--default .accordion-item-content {
@@ -24,3 +25,21 @@
     overflow: hidden;
     transition: height .25s;
 }
+
+/*Fade out*/
+
+.fade-enter {
+    opacity: 0.01;
+  }
+  .fade-enter-active {
+    opacity: 1;
+    transition: all 4s;
+  }
+  .fade-exit {
+    opacity: 1;
+  }
+  .fade-exit-active {
+    opacity: 0.01;
+    transition: all 4s;
+  }
+  

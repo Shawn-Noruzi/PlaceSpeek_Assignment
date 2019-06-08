@@ -4,7 +4,7 @@ import ListRender from "./components/listRender.js";
 import listReducer from "./reducers/listReducer";
 //context to allow for state management between different components
 import ListContext from "./context/list-context";
-//Styles
+//Bootstrap Styles
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -14,6 +14,8 @@ const App = () => {
   //Set up the State with the Users[object Object] and Integers: FooSize, BarSize, FooBarSize;
   //Hooks help out with stateful logic within components but don't do anything for
   //sharing states between components - Context solves this for us.
+
+  //Dummy data
   const Users = [
     { ID: 12, name: "A - 12", date_joined: "01-02-2019" },
     { ID: 5, name: "B - 5", date_joined: "01-02-2019" },
@@ -31,6 +33,7 @@ const App = () => {
   let BarSize = 0;
   let FooBarSize = 0;
 
+  //creating our state and connecting it to our reducer
   const [state, dispatch] = useReducer(listReducer, Users);
 
   const removeFromList = (ID, list) => {
@@ -38,43 +41,62 @@ const App = () => {
       ? FooSize--
       : (list = "bar" ? BarSize-- : (list = "foobar" ? FooBarSize-- : null));
 
-    console.log("dispatcher here! im being called!");
     dispatch({ ID, type: "REMOVE_FROM_LIST" });
   };
 
+  //return foo list 
+const returnFoo = (state) => {
+  console.log('This is the State of the Foo list', state)
+  return state; 
+}
+
+//return bar list
+const returnBar = (state) => {
+  console.log('This is the State of the Bar list', state)
+  return state; 
+}
+
+//return foobar list
+const returnFooBar = (state) => {
+  console.log('This is the State of the FooBar list', state)
+  return state; 
+}
+
   return (
-    <Container className='Container'>
+    <Container className="Container" >
         <ListContext.Provider value={[state, dispatch]}>
         <Row>
-          <Col className='Col'>
+          <Col>
             <ListRender
               checkIdValue={3}
               state={state}
               removeFromList={removeFromList}
               FooSize={FooSize}
+              returnFoo={returnFoo}
             />
           </Col>
 
-          <Col className='Col'>
+          <Col>
             <ListRender
               checkIdValue={5}
               state={state}
               removeFromList={removeFromList}
+              returnBar={returnBar}
               BarSize={BarSize}
             />
           </Col>
 
-          <Col className='Col'>
+          <Col>
             <ListRender
               checkIdValue={15}
               state={state}
               removeFromList={removeFromList}
+              returnFooBar={returnFooBar}
               FooBarSize={FooBarSize}
             />
           </Col>
           </Row>
         </ListContext.Provider>
-      
     </Container>
   );
 };

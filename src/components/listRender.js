@@ -1,10 +1,24 @@
 import React, { useState } from "react";
 import moment from "moment";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
+import "../styles/Styles.css";
+
+/*
+Creates three different lists based on the value passed in for checkIdValue. 
+Each list is:
+1. sorted by ID (descending increasing value).
+2. filtered checks the ID's in the state and gives us a Boolean for when our condition is met
+3. map returns us only the ID matched items from our state. 
+4. sizes for the newly generated lists are also kept in a variable (FooSize, BarSize, FooBarSize)
+5. Fadein/Fadeout transitions applied to any component that gets rendered. 
+6. The remove button for individual components gets shown when your mouse goes over the component. (opens with accordion styling)
+*/
 
 const ListRender = ({
   state,
   removeFromList,
   checkIdValue,
+  returnFoo,
   FooSize,
   BarSize,
   FooBarSize
@@ -19,36 +33,40 @@ const ListRender = ({
             .filter(list => list.ID % 3 === 0 && list.ID % 5 !== 0)
             .map(list => {
               FooSize++;
-              console.log("updating FooSize: ", FooSize);
 
               return (
-                <div
-                  class="accordion"
-                  key={list.ID}
-                  onMouseEnter={() => setHovered(true)}
-                  onMouseLeave={() => setHovered(false)}
-                >
-                  <section class="accordion-item">
-                    <p>Name: {list.name}</p>
-                    <p>
-                      Join Date:{" "}
-                      {moment(list.date_joined, "MM-DD-YYYY").format(
-                        "MMM Do, YY"
-                      )}
-                    </p>
+                //FadeOut or fadeEnter on component render
+                <TransitionGroup>
+                  <CSSTransition key={list.ID} timeout={600} classNames="fade">
+                    <div
+                      className="accordion"
+                      key={list.ID}
+                      onMouseEnter={() => setHovered(true)}
+                      onMouseLeave={() => setHovered(false)}
+                    >
+                      <section className="accordion-item">
+                        <p>Name: {list.name}</p>
+                        <p>
+                          Join Date:{" "}
+                          {moment(list.date_joined, "MM-DD-YYYY").format(
+                            "MMM Do, YY"
+                          )}
+                        </p>
 
-                    <div class="accordion-item-content">
-                      {isHovered ? (
-                        <button
-                          class="accordion button"
-                          onClick={() => removeFromList(list.ID, "foo")}
-                        >
-                          Foo
-                        </button>
-                      ) : null}
+                        <div className="accordion-item-content">
+                          {isHovered ? (
+                            <button
+                              className="accordion button"
+                              onClick={() => removeFromList(list.ID, "foo")}
+                            >
+                              Foo
+                            </button>
+                          ) : null}
+                        </div>
+                      </section>
                     </div>
-                  </section>
-                </div>
+                  </CSSTransition>
+                </TransitionGroup>
               );
             })
         : checkIdValue === 5
@@ -58,33 +76,37 @@ const ListRender = ({
               BarSize++;
 
               return (
-                <div
-                  class="accordion"
-                  key={list.ID}
-                  onMouseEnter={() => setHovered(true)}
-                  onMouseLeave={() => setHovered(false)}
-                >
-                  <section class="accordion-item">
-                    <p>Name: {list.name}</p>
-                    <p>
-                      Join Date:{" "}
-                      {moment(list.date_joined, "MM-DD-YYYY").format(
-                        "MMM Do, YY"
-                      )}
-                    </p>
+                <TransitionGroup>
+                  <CSSTransition key={list.ID} timeout={600} classNames="fade">
+                    <div
+                      className="accordion"
+                      key={list.ID}
+                      onMouseEnter={() => setHovered(true)}
+                      onMouseLeave={() => setHovered(false)}
+                    >
+                      <section className="accordion-item">
+                        <p>Name: {list.name}</p>
+                        <p>
+                          Join Date:{" "}
+                          {moment(list.date_joined, "MM-DD-YYYY").format(
+                            "MMM Do, YY"
+                          )}
+                        </p>
 
-                    <div class="accordion-item-content">
-                      {isHovered ? (
-                        <button
-                          class="accordion button"
-                          onClick={() => removeFromList(list.ID, "bar")}
-                        >
-                          Bar
-                        </button>
-                      ) : null}
+                        <div className="accordion-item-content">
+                          {isHovered ? (
+                            <button
+                              className="accordion button"
+                              onClick={() => removeFromList(list.ID, "bar")}
+                            >
+                              Bar
+                            </button>
+                          ) : null}
+                        </div>
+                      </section>
                     </div>
-                  </section>
-                </div>
+                  </CSSTransition>
+                </TransitionGroup>
               );
             })
         : checkIdValue === 15
@@ -94,33 +116,37 @@ const ListRender = ({
               FooBarSize++;
 
               return (
-                <div
-                  class="accordion"
-                  key={list.ID}
-                  onMouseEnter={() => setHovered(true)}
-                  onMouseLeave={() => setHovered(false)}
-                >
-                  <section class="accordion-item">
-                    <p>Name: {list.name}</p>
-                    <p>
-                      Join Date:{" "}
-                      {moment(list.date_joined, "MM-DD-YYYY").format(
-                        "MMM Do, YY"
-                      )}
-                    </p>
+                <TransitionGroup>
+                  <CSSTransition key={list.ID} timeout={600} classNames="fade">
+                    <div
+                      className="accordion"
+                      key={list.ID}
+                      onMouseEnter={() => setHovered(true)}
+                      onMouseLeave={() => setHovered(false)}
+                    >
+                      <section className="accordion-item">
+                        <p>Name: {list.name}</p>
+                        <p>
+                          Join Date:{" "}
+                          {moment(list.date_joined, "MM-DD-YYYY").format(
+                            "MMM Do, YY"
+                          )}
+                        </p>
 
-                    <div class="accordion-item-content">
-                      {isHovered ? (
-                        <button
-                          class="accordion button"
-                          onClick={() => removeFromList(list.ID, "foobar")}
-                        >
-                          FooBar
-                        </button>
-                      ) : null}
+                        <div className="accordion-item-content">
+                          {isHovered ? (
+                            <button
+                              className="accordion button"
+                              onClick={() => removeFromList(list.ID, "foobar")}
+                            >
+                              FooBar
+                            </button>
+                          ) : null}
+                        </div>
+                      </section>
                     </div>
-                  </section>
-                </div>
+                  </CSSTransition>
+                </TransitionGroup>
               );
             })
         : null}
